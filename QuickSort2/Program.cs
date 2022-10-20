@@ -74,6 +74,14 @@ namespace QuickSort2
                 }
                 cmp_count++;
 
+                //Search for an element lens than or equal to pivot
+                while((arr[j] > pivot) && (i >= low))
+                {
+                    j--;
+                    cmp_count++;
+                }
+                cmp_count++;
+
                 //Search forn an element less than or equal to pivot
                 if (i < j) // if the greater element is on the left of the element
                 {
@@ -81,12 +89,17 @@ namespace QuickSort2
                     swap(i, j);
                     mov_count++;
                 }
-                // sort the list on the left of the pivot using quick sort
-                q_sort(low, i - 1);
-
-                //Sort the list on the right of pivot using quick sort
-                q_sort(j + 1, high);
             }
+            if (low < j)
+            {
+                swap(low, j);
+                mov_count++;
+            }
+            // sort the list on the left of the pivot using quick sort
+            q_sort(low, j - 1);
+
+            //Sort the list on the right of pivot using quick sort
+            q_sort(j + 1, high);
         }
         void display()
         {
@@ -117,18 +130,10 @@ namespace QuickSort2
             //Display sorted array 
             myList.display();
             //to exit from the console
-            Console.WriteLine("\nPress Enter to exit.");
+            Console.WriteLine("\n\nPress Enter to exit.");
             Console.Read();
         }
-
-
-        static void Main(string[] args)
-        {
-        }
-    }
-    
-       
-    
+    }   
 }
 
 
